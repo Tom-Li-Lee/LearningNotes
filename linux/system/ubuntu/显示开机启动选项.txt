@@ -1,0 +1,10 @@
+单linux系统默认不会显示启动选项，有两种方法可以显示启动选项：
+1) 在启动过程中按着shift键。(不是每次都有效)
+2) 修改/etc/default/grub文件：
+
+#GRUB_HIDDEN_TIMEOUT=0   注释掉这行就可以显示启动选项，前面加#即可
+GRUB_HIDDEN_TIMEOUT_QUIET=true 
+GRUB_TIMEOUT="10" 
+...
+
+运行sudo update-grub，重新生成/boot/grub/grub.cfg

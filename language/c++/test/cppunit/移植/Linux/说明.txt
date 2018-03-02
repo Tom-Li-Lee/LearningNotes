@@ -1,0 +1,10 @@
+1. 解压gz文件。
+2. 进入解压后的文件夹，在终端运行./configure
+3. 终端运行make
+4. 运行 sudo make install。
+5. 完成上述4步后，/usr/local/lib中会有相应的so，/usr/local/include中会有相应的Header File。
+6. 将相应的project自动链接libcppunit.so和libdl.so: -lcppunit -ldl. 这需要配置project property。
+
+所有配置完毕后，可以在该project使用CppUnit中的类了。
+
+注：完成第5步后，运行sudo ldconfig.

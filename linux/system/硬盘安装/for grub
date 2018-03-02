@@ -1,0 +1,5 @@
+title  install Ubuntu 14.04 
+root (hd1,0) #For grub，the first partition represents as 0
+kernel /vmlinuz.efi boot=casper iso-scan/filename=/ubuntu.iso ro quiet splash locale=zh_CN.UTF-8       #在C盘上查找黑体的镜像文件
+initrd /initrd.lz
+boot

@@ -1,0 +1,2 @@
+1. 扩展的部分已加入cppunit.dll中，源代码在extensions目录里
+2. 实例在example目录中

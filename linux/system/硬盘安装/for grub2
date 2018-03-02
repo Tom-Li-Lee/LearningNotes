@@ -1,0 +1,6 @@
+menuentry 'Install Ubuntu 14.04' {
+loopback loop (hd1,1)/ubuntu-14.04.2-desktop-amd64.iso  #for grub2, the first partition is represented as 1.
+linux (loop)/casper/vmlinuz.efi boot=casper iso-scan/filename=/ubuntu-14.04.2-desktop-amd64.iso
+initrd (loop)/casper/initrd.lz
+boot
+}

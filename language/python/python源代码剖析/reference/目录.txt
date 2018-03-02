@@ -1,0 +1,222 @@
+第0章 python源码剖析--编译python
+　0.1 python总体架构
+　0.2 python源代码的组织 
+　0.3 windows环境下编译python 
+　0.4 unix/linux环境下编译python 
+　0.5 修改python源代码 
+　0.6 通往python之路 
+　0.7 一些注意事项
+第1部分 python内建对象
+　第1章 python对象初探
+　　1.1 python内的对象
+　　　1.1.1 对象机制的基石——pyobject
+　　　1.1.2 定长对象和变长对象
+　　1.2 类型对象
+　　　1.2.1 对象的创建
+　　　1.2.2 对象的行为
+　　　1.2.3 类型的类型
+　　1.3 python对象的多态性
+　　1.4 引用计数
+　　1.5 python对象的分类
+
+  第2章 python中的整数对象
+　　2.1 初识pyintobject对象
+　　2.2 pyintobject对象的创建和维护
+　　　2.2.1 对象创建的3种途径
+　　　2.2.2 小整数对象
+　　　2.2.3 大整数对象
+　　　2.2.4 添加和删除
+　　　2.2.5 小整数对象池的初始化
+　　2.3 hack pyintobject
+　第3章 python中的字符串对象
+　　3.1 pystringobject与pystring_type
+　　3.2 创建pystringobject对象
+　　3.3 字符串对象的intern机制
+　　3.4 字符缓冲池
+　　3.5 pystringobject效率相关问题
+　　3.6 hack pystringobject
+　第4章 python中的list对象
+　　4.1 pylistobject对象
+　　4.2 pylistobject对象的创建与维护
+　　　4.2.1 创建对象
+　　　4.2.2 设置元素
+　　　4.2.3 插入元素
+　　　4.2.4 删除元素
+　　4.3 pylistobject对象缓冲池
+　　4.4 hack pylistobject
+　第5章 python中的dict对象
+　　5.1 散列表概述
+　　5.2 pydictobject
+　　　5.2.1 关联容器的entry
+　　　5.2.2 关联容器的实现
+　　5.3 pydictobject的创建和维护
+　　　5.3.1 pydictobject对象创建
+　　　5.3.2 pydictobject中的元素搜索
+　　　5.3.3 插入与删除
+　　　5.3.4 操作示例
+　　5.4 pydictobject对象缓冲池
+　　5.5 hack pydictobject
+　第6章 最简单的python模拟——small python
+　　6.1 small python
+　　6.2 对象机制
+　　6.3 解释过程
+　　6.4 交互式环境
+第2部分 python虚拟机
+　第7章 python的编译结果--code对象与pyc文件
+　　7.1 python程序的执行过程
+　　7.2 python编译器的编译结果--pycodeobject对象
+　　　7.2.1 pycodeobject对象与pyc文件
+　　　7.2.2 python源码中的pycodeobject
+　　　7.2.3 pyc文件
+　　　7.2.4 在python中访问pycodeobject对象
+　　7.3 pyc文件的生成
+　　　7.3.1 创建pyc文件的具体过程
+　　　7.3.2 向pyc文件写入字符串
+　　　7.3.3 一个pycodeobject，多个pycodeobject
+　　7.4 python的字节码
+　　7.5 解析pyc文件
+　第8章 python虚拟机框架
+　　8.1 python虚拟机中的执行环境
+　　　8.1.1 python源码中的pyframeobject
+　　　8.1.2 pyframeobject中的动态内存空间
+　　　8.1.3 在python中访问pyframeobject对象
+　　8.2 名字、作用域和名字空间
+　　　8.2.1 python程序的基础结构——module
+　　　8.2.2 约束与名字空间
+　　　8.2.3 作用域与名字空间
+　　8.3 python虚拟机的运行框架
+　　8.4 python运行时环境初探
+　第9章 python虚拟机中的一般表达式
+　　9.1 简单内建对象的创建
+　　9.2 复杂内建对象的创建
+　　9.3 其他一般表达式
+　　　9.3.1 符号搜索
+　　　9.3.2 数值运算
+　　　9.3.3 信息输出
+　第10章 python虚拟机中的控制流
+　　10.1 python虚拟机中的if控制流
+　　　10.1.1 研究对象--if_control.py
+　　　10.1.2 比较操作
+　　　10.1.3 指令跳跃
+　　10.2 python虚拟机中的for循环控制流
+　　　10.2.1 研究对象——for_control.py
+　　　10.2.2 循环控制结构的初始化
+　　　10.2.3 迭代控制
+　　　10.2.4 终止迭代
+　　10.3 python虚拟机中的while循环控制结构
+　　　10.3.1 研究对象——while_control.py
+　　　10.3.2 循环终止
+　　　10.3.3 循环的正常运转
+　　　10.3.4 循环流程改变指令之continue
+　　　10.3.5 循环流程改变指令之break
+　　10.4 python虚拟机中的异常控制流
+　　　10.4.1 python中的异常机制
+　　　10.4.2 python中的异常控制语义结构
+　第11章 python虚拟机中的函数机制
+　　11.1 pyfunctionobject对象
+　　11.2 无参函数调用
+　　　11.2.1 函数对象的创建
+　　　11.2.2 函数调用
+　　11.3 函数执行时的名字空间
+　　11.4 函数参数的实现
+　　　11.4.1 参数类别
+　　　11.4.2 位置参数的传递
+　　　11.4.3 位置参数的访问
+　　　11.4.4 位置参数的默认值
+　　　11.4.5 扩展位置参数和扩展键参数
+　　11.5 函数中局部变量的访问
+　　11.6 嵌套函数、闭包与decorator
+　　　11.6.1 实现闭包的基石
+　　　11.6.2 闭包的实现
+　　　11.6.3 decorator
+　第12章 python虚拟机中的类机制
+　　12.1 python中的对象模型
+　　　12.1.1 对象间的关系
+　　　12.1.2 [type 'type']和[type 'object']
+　　12.2 从type对象到class对象
+　　　12.2.1 处理基类和type信息
+　　　12.2.2 处理基类列表
+　　　12.2.3 填充tp_dict
+　　12.3 用户自定义class
+　　　12.3.1 创建class对象
+　　12.4 从class对象到instance对象
+　　12.5 访问instance对象中的属性
+　　　12.5.1 instance对象中的__dict__
+　　　12.5.2 再论descriptor
+　　　12.5.3 函数变身
+　　　12.5.4 无参函数的调用
+　　　12.5.5 带参函数的调用
+　　　12.5.6 bound method和unbound method
+　　12.6 千变万化的descriptor
+第3部分 python高级话题
+　第13章 python运行环境初始化
+　　13.1 线程环境初始化
+　　　13.1.1 线程模型回顾
+　　　13.1.2 初始化线程环境
+　　13.2 系统module初始化
+　　　13.2.1 创建__builtin__ module
+　　　13.2.2 创建sys module
+　　　13.2.3 创建__main__ module
+　　　13.2.4 设置site-specific的module的搜索路径
+　　13.3 激活python虚拟机
+　　　13.3.1 交互式运行方式
+　　　13.3.2 脚本文件运行方式
+　　　13.3.3 启动虚拟机
+　　　13.3.4 名字空间
+　第14章 python模块的动态加载机制
+　　14.1 import前奏曲
+　　14.2 python中import机制的黑盒探测
+　　　14.2.1 标准import
+　　　14.2.2 嵌套import
+　　　14.2.3 import package
+　　　14.2.4 from与import
+　　　14.2.5 符号重命名
+　　　14.2.6 符号的销毁与重载
+　　14.3 import机制的实现
+　　　14.3.1 解析module/package树状结构
+　　　14.3.2 加载module/pakcage
+　　　14.3.3 from与import
+　　14.4 python中的import操作
+　　　14.4.1 import module
+　　　14.4.2 import package
+　　　14.4.3 from & import
+　　　14.4.4 import & as
+　　　14.4.5 reload
+　　　14.4.6 内建module：imp
+　　14.5 与module有关的名字空间问题
+　第15章 python多线程机制
+　　15.1 gil与线程调度
+　　15.2 初见python thread
+　　15.3 python线程的创建
+　　　15.3.1 建立多线程环境
+　　　15.3.2 创建线程
+　　15.4 python线程的调度
+　　　15.4.1 标准调度
+　　　15.4.2 阻塞调度
+　　15.5 python子线程的销毁
+　　15.6 python线程的用户级互斥与同步
+　　　15.6.1 用户级互斥与同步
+　　　15.6.2 lock对象
+　　15.7 高级线程库——threading
+　　　15.7.1 threading module概述
+　　　15.7.2 threading的线程同步工具
+　　　15.7.3 threading中的thread
+　第16章 python的内存管理机制
+　　16.1 内存管理架构
+　　16.2 小块空间的内存池
+　　　16.2.1 block
+　　　16.2.2 pool
+　　　16.2.3 arena
+　　　16.2.4 内存池
+　　16.3 循环引用的垃圾收集
+　　　16.3.1 引用计数与垃圾收集
+　　　16.3.2 三色标记模型
+　　16.4 python中的垃圾收集
+　　　16.4.1 可收集对象链表
+　　　16.4.2 分代的垃圾收集
+　　　16.4.3 python中的标记-清除方法
+　　　16.4.4 垃圾收集全景
+　　　16.4.5 python中的gc模块
+　　　16.4.6 总结 
+
+作者blog地址：http://blog.csdn.net/balabalamerobert/category/168910.aspx?PageNumber=2

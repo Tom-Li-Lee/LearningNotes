@@ -1,0 +1,74 @@
+gcc和g++的区别
+ 
+  我们在编译c/c++代码的时候，有人用gcc，有人用g++，于是各种说法都来了，譬如c代码用gcc，而c++代码用g++，或者说编译用gcc，链接用g++，一时也不知哪个说法正确，如果再遇上个extern "C"，分歧就更多了，这里我想作个了结，毕竟知识的目的是令人更清醒，而不是更糊涂。
+ 
+误区一:gcc只能编译c代码,g++只能编译c++代码
+两者都可以，但是请注意：
+1.后缀为.c的，gcc把它当作是C程序，而g++当作是c++程序；后缀为.cpp的，两者都会认为是c++程序，注意，虽然c++是c的超集，但是两者对语法的要求是有区别的，例如：
+#include <stdio.h>
+int main(int argc, char* argv[]) {
+   if(argv == 0) return;
+   printString(argv);
+   return;
+}
+int printString(char* string) {
+  sprintf(string, "This is a test.\n");
+}
+如果按照C的语法规则，OK，没问题，但是，一旦把后缀改为cpp，立刻报三个错：“printString未定义”；
+“cannot convert `char**' to `char*”；
+”return-statement with no value“；
+分别对应前面红色标注的部分。可见C++的语法规则更加严谨一些。
+2.编译阶段，g++会调用gcc，对于c++代码，两者是等价的，但是因为gcc命令不能自动和C＋＋程序使用的库联接，所以通常用g++来完成链接，为了统一起见，干脆编译/链接统统用g++了，这就给人一种错觉，好像cpp程序只能用g++似的。
+ 
+误区二:gcc不会定义__cplusplus宏，而g++会
+实际上，这个宏只是标志着编译器将会把代码按C还是C++语法来解释，如上所述，如果后缀为.c，并且采用gcc编译器，则该宏就是未定义的，否则，就是已定义。
+ 
+误区三:编译只能用gcc，链接只能用g++
+严格来说，这句话不算错误，但是它混淆了概念，应该这样说：编译可以用gcc/g++，而链接可以用g++或者gcc -lstdc++。因为gcc命令不能自动和C＋＋程序使用的库联接，所以通常使用g++来完成联接。但在编译阶段，g++会自动调用gcc，二者等价。
+ 
+误区四:extern "C"与gcc/g++有关系
+实际上并无关系，无论是gcc还是g++，用extern "c"时，都是以C的命名方式来为symbol命名，否则，都以c++方式命名。试验如下：
+me.h：
+extern "C" void CppPrintf(void);
+ 
+me.cpp:
+#include <iostream>
+#include "me.h"
+using namespace std;
+void CppPrintf(void)
+{
+     cout << "Hello\n";
+}
+ 
+test.cpp:
+#include <stdlib.h>
+#include <stdio.h>
+#include "me.h"        
+int main(void)
+{
+    CppPrintf();
+    return 0;
+}
+ 
+1. 先给me.h加上extern "C"，看用gcc和g++命名有什么不同
+[root@root G++]# g++ -S me.cpp
+[root@root G++]# less me.s
+.globl _Z9CppPrintfv        //注意此函数的命名
+        .type   CppPrintf, @function
+[root@root GCC]# gcc -S me.cpp
+[root@root GCC]# less me.s
+.globl _Z9CppPrintfv        //注意此函数的命名
+        .type   CppPrintf, @function
+完全相同！
+               
+2. 去掉me.h中extern "C"，看用gcc和g++命名有什么不同
+[root@root GCC]# gcc -S me.cpp
+[root@root GCC]# less me.s
+.globl _Z9CppPrintfv        //注意此函数的命名
+        .type   _Z9CppPrintfv, @function
+[root@root G++]# g++ -S me.cpp
+[root@root G++]# less me.s
+.globl _Z9CppPrintfv        //注意此函数的命名
+        .type   _Z9CppPrintfv, @function
+完全相同！
+【结论】完全相同，可见extern "C"与采用gcc/g++并无关系，以上的试验还间接的印证了前面的说法：在编译阶段，g++是调用gcc的。

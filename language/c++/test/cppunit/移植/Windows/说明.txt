@@ -1,0 +1,4 @@
+1. 将cppunit.dll拷贝到C:\Windows\System32下.
+2. 将include文件夹中的2个文件夹：cppunit和msvc6拷贝到MinGW\include下。
+2. 将.cproject覆盖当前project中的文件。
+注意：cppunit.dll是基于版本1.12.1的。

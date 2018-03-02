@@ -1,0 +1,203 @@
+ 29           6 LOAD_CONST               1 (1)
+              9 STORE_NAME               1 (a)
+
+ 30          12 LOAD_NAME                1 (a)
+             15 LOAD_CONST               2 (10)
+             18 COMPARE_OP               4 (>)
+             21 POP_JUMP_IF_FALSE       32
+
+ 31          24 LOAD_CONST               3 ('a > 10')
+             27 PRINT_ITEM          
+             28 PRINT_NEWLINE       
+             29 JUMP_FORWARD            65 (to 97)
+
+ 32     >>   32 LOAD_NAME                1 (a)
+             35 LOAD_CONST               4 (-2)
+             38 COMPARE_OP               1 (<=)
+             41 POP_JUMP_IF_FALSE       52
+
+ 33          44 LOAD_CONST               5 ('a <= -2')
+             47 PRINT_ITEM          
+             48 PRINT_NEWLINE       
+             49 JUMP_FORWARD            45 (to 97)
+
+ 34     >>   52 LOAD_NAME                1 (a)
+             55 LOAD_CONST               1 (1)
+             58 COMPARE_OP               3 (!=)
+             61 POP_JUMP_IF_FALSE       72
+
+ 35          64 LOAD_CONST               6 ('a != 1')
+             67 PRINT_ITEM          
+             68 PRINT_NEWLINE       
+             69 JUMP_FORWARD            25 (to 97)
+
+ 36     >>   72 LOAD_NAME                1 (a)
+             75 LOAD_CONST               1 (1)
+             78 COMPARE_OP               2 (==)
+             81 POP_JUMP_IF_FALSE       92
+
+ 37          84 LOAD_CONST               7 ('a == 1')
+             87 PRINT_ITEM          
+             88 PRINT_NEWLINE       
+             89 JUMP_FORWARD             5 (to 97)
+
+ 39     >>   92 LOAD_CONST               8 ('Unknown a')
+             95 PRINT_ITEM          
+             96 PRINT_NEWLINE       
+
+ 41     >>   97 LOAD_CONST               1 (1)
+            100 LOAD_CONST               9 (2)
+            103 BUILD_LIST               2
+            106 STORE_NAME               2 (lst)
+
+ 42         109 SETUP_LOOP              19 (to 131)
+            112 LOAD_NAME                2 (lst)
+            115 GET_ITER            
+        >>  116 FOR_ITER                11 (to 130)
+            119 STORE_NAME               3 (i)
+
+ 43         122 LOAD_NAME                3 (i)
+            125 PRINT_ITEM          
+            126 PRINT_NEWLINE       
+            127 JUMP_ABSOLUTE          116
+        >>  130 POP_BLOCK           
+
+ 45     >>  131 LOAD_CONST               1 (1)
+            134 LOAD_NAME                2 (lst)
+            137 COMPARE_OP               6 (in)
+            140 POP_JUMP_IF_FALSE      151
+
+ 46         143 LOAD_CONST              10 ('Found')
+            146 PRINT_ITEM          
+            147 PRINT_NEWLINE       
+            148 JUMP_FORWARD             0 (to 151)
+
+ 48     >>  151 LOAD_CONST              11 (0)
+            154 STORE_NAME               3 (i)
+
+ 49         157 SETUP_LOOP              65 (to 225)
+        >>  160 LOAD_NAME                3 (i)
+            163 LOAD_CONST               2 (10)
+            166 COMPARE_OP               0 (<)
+            169 POP_JUMP_IF_FALSE      224
+
+ 50         172 LOAD_NAME                3 (i)
+            175 LOAD_CONST               1 (1)
+            178 INPLACE_ADD         
+            179 STORE_NAME               3 (i)
+
+ 51         182 LOAD_NAME                3 (i)
+            185 LOAD_CONST              12 (5)
+            188 COMPARE_OP               4 (>)
+            191 POP_JUMP_IF_FALSE      200
+
+ 52         194 JUMP_ABSOLUTE          160
+            197 JUMP_FORWARD             0 (to 200)
+
+ 53     >>  200 LOAD_NAME                3 (i)
+            203 LOAD_CONST              13 (20)
+            206 COMPARE_OP               2 (==)
+            209 POP_JUMP_IF_FALSE      216
+
+ 54         212 BREAK_LOOP          
+            213 JUMP_FORWARD             0 (to 216)
+
+ 55     >>  216 LOAD_NAME                3 (i)
+            219 PRINT_ITEM          
+            220 PRINT_NEWLINE       
+            221 JUMP_ABSOLUTE          160
+        >>  224 POP_BLOCK           
+
+ 57     >>  225 SETUP_FINALLY           47 (to 275)
+            228 SETUP_EXCEPT            16 (to 247)
+
+ 58         231 LOAD_NAME                4 (Exception)
+            234 LOAD_CONST              14 ('i am an exception')
+            237 CALL_FUNCTION            1
+            240 RAISE_VARARGS            1
+            243 POP_BLOCK           
+            244 JUMP_FORWARD            24 (to 271)
+
+ 59     >>  247 DUP_TOP             
+            248 LOAD_NAME                4 (Exception)
+            251 COMPARE_OP              10 (exception match)
+            254 POP_JUMP_IF_FALSE      270
+            257 POP_TOP             
+            258 STORE_NAME               5 (e)
+            261 POP_TOP             
+
+ 60         262 LOAD_NAME                5 (e)
+            265 PRINT_ITEM          
+            266 PRINT_NEWLINE       
+            267 JUMP_FORWARD             1 (to 271)
+        >>  270 END_FINALLY         
+        >>  271 POP_BLOCK           
+            272 LOAD_CONST              15 (None)
+
+ 62     >>  275 LOAD_CONST              16 ('the finally code')
+            278 PRINT_ITEM          
+            279 PRINT_NEWLINE       
+            280 END_FINALLY         
+
+ 65         281 LOAD_CONST              17 (<code object h at 00B26890, file "main.py", line 65>)
+            284 MAKE_FUNCTION            0
+            287 STORE_NAME               6 (h)
+
+ 68         290 LOAD_CONST              18 (<code object g at 00BB8338, file "main.py", line 68>)
+            293 MAKE_FUNCTION            0
+            296 STORE_NAME               7 (g)
+
+ 71         299 LOAD_CONST              19 (<code object f at 00BB84A0, file "main.py", line 71>)
+            302 MAKE_FUNCTION            0
+            305 STORE_NAME               8 (f)
+
+ 74         308 LOAD_CONST               9 (2)
+            311 LOAD_CONST              20 (<code object f at 00BB8380, file "main.py", line 74>)
+            314 MAKE_FUNCTION            1
+            317 STORE_NAME               8 (f)
+
+ 79         320 LOAD_CONST              21 (<code object Py_Func at 00BB83C8, file "main.py", line 79>)
+            323 MAKE_FUNCTION            0
+            326 STORE_NAME               9 (Py_Func)
+
+ 82         329 LOAD_NAME                9 (Py_Func)
+            332 LOAD_CONST              22 (-1)
+            335 LOAD_CONST               1 (1)
+            338 LOAD_CONST               9 (2)
+            341 LOAD_CONST              23 ('a')
+            344 LOAD_CONST              24 (3)
+            347 LOAD_CONST              25 ('b')
+            350 LOAD_CONST              26 (4)
+            353 CALL_FUNCTION          515
+            356 POP_TOP             
+
+ 85         357 LOAD_CONST              27 (<code object get_func at 00BB8458, file "main.py", line 85>)
+            360 MAKE_FUNCTION            0
+            363 STORE_NAME              10 (get_func)
+
+ 91         366 LOAD_NAME               10 (get_func)
+            369 CALL_FUNCTION            0
+            372 STORE_NAME              11 (show_value)
+
+ 92         375 LOAD_NAME               11 (show_value)
+            378 CALL_FUNCTION            0
+            381 POP_TOP             
+
+ 96         382 LOAD_CONST              28 (<code object should_say at 00BB8530, file "main.py", line 96>)
+            385 MAKE_FUNCTION            0
+            388 STORE_NAME              12 (should_say)
+
+102         391 LOAD_NAME               12 (should_say)
+            394 LOAD_CONST              29 (<code object func at 00BB8578, file "main.py", line 102>)
+            397 MAKE_FUNCTION            0
+            400 CALL_FUNCTION            1
+            403 STORE_NAME              13 (func)
+
+105         406 LOAD_NAME               13 (func)
+            409 LOAD_CONST               1 (1)
+            412 LOAD_CONST               9 (2)
+            415 LOAD_CONST              24 (3)
+            418 CALL_FUNCTION            3
+            421 POP_TOP             
+            422 LOAD_CONST              15 (None)
+            425 RETURN_VALUE        

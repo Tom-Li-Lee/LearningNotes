@@ -1,0 +1,5 @@
+1. 将sdis.py放入python的默认搜索目录中，比如"D:\Python27\Lib", python的默认搜索路径以后会说明。
+
+2. 在viewByteCode.py中设置相应的文件名以及类方法，module或是函数名
+
+3. 执行viewByteCode.py文件。

@@ -1,0 +1,7 @@
+1. 在adobe官网下载安装文件，可以是deb安装包，也可以是tar包。个人推荐tar包。
+2. deb包就直接用dpkg命令或双击运行ubuntu软件中心完成安装。
+3. 先后执行下面命令完成安装：
+1） tar -zxvf install_flash_player_11_linux.x86_64.tar.gz  #解压
+2） sudo cp libflashplayer.so  /usr/lib/mozilla/plugins/ #复制
+3） sudo cp -r ./usr/* /usr/ #复制
+

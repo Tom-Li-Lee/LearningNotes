@@ -1,0 +1,5 @@
+将一个pyc文件反汇编成source code，目前有一个网站提供这种服务：
+
+   http://www.depython.net/
+
+目前只支持到2.5，貌似2.5以上不支持...
